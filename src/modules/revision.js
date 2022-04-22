@@ -6,30 +6,34 @@ const revision = function () {
     const formPhone = document.querySelectorAll('.form-phone')
     
     formPhone.forEach(btn => {
-        btn.addEventListener('blur', function () {
+        btn.addEventListener('input', function () {
             phone(event)
         })
     })
 
     formEmail.forEach(btn => {
-        btn.addEventListener('blur', function () {
+        btn.addEventListener('input', function () {
             email(event)
         })
     })
 
     formName.forEach(btn => {
-        btn.addEventListener('blur', function () {
+        btn.addEventListener('input', function () {
             text(event)
         })
     })
 
-    calcItem.forEach(btn => {
-        btn.addEventListener('blur', function () {
-            calc(event)
+    calcItem.forEach((btn) => {
+            btn.addEventListener('input', function () {
+                if (!btn[0]) {
+                    calc(event)
+                } else {
+                    return
+                }
         })
     })
 
-    form2Message.addEventListener('blur', function () {
+    form2Message.addEventListener('input', function () {
         text(event)
     })
 

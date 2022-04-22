@@ -5,11 +5,13 @@ import scroll from "./modules/scroll"
 import revision from "./modules/revision"
 import tabs from "./modules/tabs"
 import slider from "./modules/slider"
+import calc from "./modules/calc"
 
-timer('21 april 2022 15:50:00')
+timer('22 april 2022 12:55:00')
 menu()
 modal()
 scroll()
 revision()
 tabs()
 slider([ '.portfolio-content', '.portfolio-item', '.portfolio-dots', '.dot-active'])
+calc(100)
