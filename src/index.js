@@ -6,8 +6,9 @@ import revision from "./modules/revision"
 import tabs from "./modules/tabs"
 import slider from "./modules/slider"
 import calc from "./modules/calc"
+import sendForm from "./modules/sendForm"
 
-timer('22 april 2022 12:55:00')
+timer('26 april 2022 14:55:00')
 menu()
 modal()
 scroll()
@@ -15,3 +16,12 @@ revision()
 tabs()
 slider([ '.portfolio-content', '.portfolio-item', '.portfolio-dots', '.dot-active'])
 calc(100)
+sendForm({
+    formId: 'form1',
+    someElem: [
+        {
+            type: 'block',
+            id: 'total'
+        }
+    ]
+})
