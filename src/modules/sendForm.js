@@ -5,10 +5,43 @@ const sendForm = ({ formId, someElem = [] }) => {
     const errorText = 'Ошибка...'
     const successText = 'Спасибо! Наш менеджер с вами свяжется'
 
-    const validate = (list) => {
-        let success = true
+    const loaderInit = () => {
+        const preloader = document.querySelector('#preloader')
+        console.log(preloader);
+        const loaderAnimate = (e) => {
+            e.style.cssText = `width: 100%; height: 50px; min-width: 1000px; background: url(http://hello-site.ru//main/images/preloads/puff.svg) center center no-repeat`
+            e.style.opacity = 1
+            const preloaderInterval = setInterval(() => {
+                e.style.opacity = e.style.opacity - 0.05
+                if (e.style.opacity <= 0.05) {
+                    clearInterval(preloaderInterval)
+                    e.style.display = 'none'
+                }
+                console.log('ok');
+            }, 100)
+        }
+        loaderAnimate(preloader)
+    }
 
-        return success
+    const validate = (list) => {
+        const regexArray = {
+            user_name: /[а-яА-я\-\ ]/g,
+            user_email: /[a-zA-Z0-9\@\-\_\.\!\~\*\']/g,
+            user_phone: /[\d\()\-]/g,
+            user_message: /[^\d\W]/g
+        }
+
+        let errors = {};
+
+        list.forEach(input => {
+
+            if (regexArray[input.name].test(input.value) === false){
+                errors[input.name] = false;
+            } else {
+                errors[input.name] = true;
+            }
+        })
+        return errors;
     }
 
     const sendData = (data) => {
@@ -26,9 +59,9 @@ const sendForm = ({ formId, someElem = [] }) => {
         const formData = new FormData(form)
         const formBody = {}
 
-        statusBlock.textContent = loadText
+        statusBlock.innerHTML = '<div id="preloader"></div>'
         form.append(statusBlock)
-
+        loaderInit()
         formData.forEach((val, key) => {
             formBody[key] = val
         })
@@ -42,8 +75,6 @@ const sendForm = ({ formId, someElem = [] }) => {
                 formBody[elem.id] = element.value
             }
         })
-
-        console.log('submit')
 
         if(validate(formElements)) {
             sendData(formBody)
@@ -61,6 +92,8 @@ const sendForm = ({ formId, someElem = [] }) => {
             alert('Данные не валидны!!!')
         }
     }
+
+
 
     try {
         if(!form) {

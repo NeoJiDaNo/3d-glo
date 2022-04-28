@@ -4,6 +4,7 @@ const revision = function () {
     const formName = document.querySelectorAll('.form-name')
     const formEmail = document.querySelectorAll('.form-email')
     const formPhone = document.querySelectorAll('.form-phone')
+    const form3Name = document.querySelectorAll('.top-form')[0]
     
     formPhone.forEach(btn => {
         btn.addEventListener('input', function () {
@@ -34,6 +35,10 @@ const revision = function () {
     })
 
     form2Message.addEventListener('input', function () {
+        text(event)
+    })
+
+    form3Name.addEventListener('input', function () {
         text(event)
     })
 
